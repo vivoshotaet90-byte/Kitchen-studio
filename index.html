@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171916">
+  <meta name="description" content="Кухни на заказ, индивидуальный дизайн и предварительный расчёт стоимости.">
+  <title>FORMA — кухни на заказ</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#home">FORMA<span>.</span></a>
+    <nav>
+      <a href="#catalog">Коллекции</a>
+      <a href="#designer">3D-конструктор</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="header-cta" href="#designer">Создать кухню ↗</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow"><span></span> КУХНИ ПО ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</div>
+        <h1>Пространство,<br>созданное <em>для вас.</em></h1>
+        <p>Продумываем каждую деталь. Подбираем материалы, конфигурацию и цвета под ваш интерьер.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#designer">Спроектировать кухню ↗</a>
+          <a class="button secondary" href="#catalog">Смотреть коллекции</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>01</strong><span>Ваши размеры</span></div>
+          <div><strong>02</strong><span>Ваш стиль</span></div>
+          <div><strong>03</strong><span>Ваш проект</span></div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85" alt="Современный интерьер дома">
+        <div class="image-label"><span>DESIGN COLLECTION</span><strong>Тишина в деталях</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="section-heading">
+        <div><div class="eyebrow">НАШ ПОДХОД</div><h2>Найдите свой стиль.</h2></div>
+        <p>Выберите направление, которое вам близко. Все решения можно адаптировать под ваши размеры.</p>
+      </div>
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Минималистичный интерьер">
+          <div class="card-info"><div><span>01 / MINIMAL</span><h3>Чистые линии</h3></div><a href="#designer" aria-label="Выбрать минималистичный стиль">↗</a></div>
+        </article>
+        <article class="catalog-card">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80" alt="Тёплый современный интерьер">
+          <div class="card-info"><div><span>02 / NATURAL</span><h3>Тёплое дерево</h3></div><a href="#designer" aria-label="Выбрать стиль с деревом">↗</a></div>
+        </article>
+        <article class="catalog-card">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80" alt="Современный дизайнерский интерьер">
+          <div class="card-info"><div><span>03 / MODERN</span><h3>Современная классика</h3></div><a href="#designer" aria-label="Выбрать современный стиль">↗</a></div>
+        </article>
+      </div>
+      <p class="note">Изображения — примеры интерьеров. Итоговый проект и материалы согласовываются отдельно.</p>
+    </section>
+
+    <section class="designer-section" id="designer">
+      <div class="section-heading">
+        <div><div class="eyebrow">ВАША ИДЕЯ — В 3D</div><h2>Создайте своё пространство.</h2></div>
+        <p>Задайте размеры комнаты, добавьте кухонные модули и подберите цвет фасадов.</p>
+      </div>
+
+      <div class="designer">
+        <aside class="controls">
+          <div class="control-title"><span>01</span><h3>Параметры комнаты</h3></div>
+          <label>Ширина комнаты, м <input id="roomWidth" type="number" min="2" max="10" step="0.1" value="4"></label>
+          <label>Длина комнаты, м <input id="roomLength" type="number" min="2" max="10" step="0.1" value="4"></label>
+          <label>Высота, м <input id="roomHeight" type="number" min="2" max="4" step="0.1" value="2.7"></label>
+          <button class="button primary full" id="updateRoom">Обновить комнату</button>
+
+          <div class="control-title spaced"><span>02</span><h3>Кухонные модули</h3></div>
+          <p class="small">Добавляйте шкафы вдоль стены. Модули можно выбрать и перемещать мышью в 3D.</p>
+          <div class="module-buttons">
+            <button class="module-button" data-module="base">＋ Нижний шкаф <span>60 см</span></button>
+            <button class="module-button" data-module="drawer">＋ Ящики <span>60 см</span></button>
+            <button class="module-button" data-module="tall">＋ Высокий шкаф <span>60 см</span></button>
+            <button class="module-button" data-module="wall">＋ Навесной шкаф <span>60 см</span></button>
+          <button class="module-button" data-module="fridge">＋ Холодильник <span>отдельный</span></button>
+          <button class="module-button" data-module="sink">＋ Мойка <span>отдельная</span></button>
+          <button class="module-button" data-module="faucet">＋ Кран <span>отдельный</span></button>
+          <button class="module-button" data-module="stove">＋ Варочная панель <span>отдельная</span></button>
+          <button class="module-button" data-module="oven">＋ Духовка <span>отдельная</span></button>
+          <button class="module-button" data-module="window">＋ Окно <span>на стене</span></button>
+          <button class="module-button" data-module="door">＋ Дверь <span>на стене</span></button>
+          <button class="module-button" data-module="table">＋ Обеденный стол <span>отдельный</span></button>
+          <button class="module-button" data-module="chair">＋ Стул <span>отдельный</span></button>
+          </div>
+
+          <div class="control-title spaced"><span>03</span><h3>Цвет фасадов</h3></div>
+          <div class="swatches">
+            <button class="swatch active" data-color="#d8d0c1" style="background:#d8d0c1" aria-label="Песочный"></button>
+            <button class="swatch" data-color="#777e70" style="background:#777e70" aria-label="Оливковый"></button>
+            <button class="swatch" data-color="#343936" style="background:#343936" aria-label="Графитовый"></button>
+            <button class="swatch" data-color="#a47755" style="background:#a47755" aria-label="Дуб"></button>
+            <button class="swatch" data-color="#f1eee7" style="background:#f1eee7" aria-label="Светлый"></button>
+          </div>
+
+          <div class="control-title spaced"><span>04</span><h3>Выбранный модуль</h3></div>
+          <div id="selectionInfo" class="selection-info">Выберите модуль в 3D, чтобы изменить его.</div>
+<div id="objectControls" style="display:none;margin:12px 0;padding:12px;border:1px solid #777;border-radius:12px;background:#202020;color:white">
+      <div id="objectControlsTitle" style="font-weight:600;margin-bottom:10px">Выберите предмет</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button id="moveSelected" type="button">↔ Переместить</button>
+        <button id="rotateSelected" type="button">⟳ Повернуть</button>
+        <button id="deleteSelected" type="button">✕ Удалить</button>
+      </div>
+    </div>
+          <div class="selected-actions">
+            <button class="button secondary" id="rotateModule">Повернуть ↻</button>
+            <button class="button secondary" id="deleteModule">Удалить</button>
+          </div>
+          <div class="selected-actions">
+            <button class="button secondary" id="saveProject">Сохранить проект</button>
+            <button class="button secondary" id="loadProject">Загрузить</button>
+          </div>
+          <button class="button secondary full" id="exportProject">Экспортировать JSON ↓</button>
+          <button class="button secondary full" id="screenshot">Скачать снимок 3D</button>
+          <input type="file" id="importFile" accept=".json,application/json" hidden>
+          <button class="button secondary full" id="importProject">Импортировать JSON ↑</button>
+          <p id="status" class="status" role="status">Проект готов к редактированию.</p>
+        </aside>
+
+        <div class="viewport-wrap">
+          <div class="viewport-top"><span><i></i> 3D-ПРОСМОТР</span><span>Прокрутка — масштаб · Перетаскивание — обзор</span></div>
+          <div id="viewport" aria-label="Интерактивная 3D-модель кухни"></div>
+          <div class="viewport-bottom"><span>ПРЕДВАРИТЕЛЬНАЯ ВИЗУАЛИЗАЦИЯ</span><button id="resetCamera">Сбросить вид ↗</button></div>
+          <div class="estimate">
+            <div><span>ПРЕДВАРИТЕЛЬНАЯ ОЦЕНКА</span><strong id="totalPrice">0 MDL</strong><small>Ориентировочно, не является коммерческим предложением</small></div>
+            <div class="estimate-details"><span>Модули: <b id="moduleCount">0</b></span><span>Погонная длина: <b id="runLength">0 м</b></span></div>
+          </div>
+          <p class="note">Стоимость рассчитывается по демонстрационным ставкам и не учитывает все материалы, технику, доставку и монтаж.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contacts">
+      <div><div class="eyebrow">СЛЕДУЮЩИЙ ШАГ</div><h2>Обсудим вашу кухню?</h2><p>Оставьте контактные данные — после подключения формы можно будет отправлять реальные заявки.</p></div>
+      <form id="contactForm">
+        <label>Ваше имя<input name="name" required placeholder="Как к вам обращаться?"></label>
+        <label>Телефон или мессенджер<input name="contact" required placeholder="+373 ..."></label>
+        <label>Комментарий<textarea name="message" rows="3" placeholder="Размеры, пожелания, стиль..."></textarea></label>
+        <button class="button primary full" type="submit">Подготовить заявку ↗</button>
+        <p id="formStatus" class="status" role="status">Форма пока демонстрационная: данные никуда не отправляются.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer><a class="logo" href="#home">FORMA<span>.</span></a><span>Индивидуальные кухни · Moldova</span><span>© <span id="year"></span> FORMA</span></footer>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module" src="js/app.js"></script>
+
+<section id="twoTonePanel" class="two-tone-panel">
+  <h2>Цветовая комбинация кухни</h2>
+  <p>Выбери оттенки фасадов и столешницы</p>
+
+  <label for="lowerColor">Нижние шкафы</label>
+  <select id="lowerColor">
+    <option value="#78805b">Оливковый</option>
+    <option value="#f4f1e8">Белый</option>
+    <option value="#d6c5a8">Бежевый</option>
+    <option value="#777873">Графитовый</option>
+    <option value="#b28b65">Дуб</option>
+    <option value="#202522">Чёрный</option>
+    <option value="#a7b7b0">Серо-зелёный</option>
+    <option value="#c6a6a0">Пудровый</option>
+  </select>
+
+  <label for="upperColor">Верхние шкафы</label>
+  <select id="upperColor">
+    <option value="#f4f1e8">Белый</option>
+    <option value="#78805b">Оливковый</option>
+    <option value="#d6c5a8">Бежевый</option>
+    <option value="#777873">Графитовый</option>
+    <option value="#b28b65">Дуб</option>
+    <option value="#202522">Чёрный</option>
+    <option value="#a7b7b0">Серо-зелёный</option>
+    <option value="#c6a6a0">Пудровый</option>
+  </select>
+
+  <label for="tallColor">Высокие шкафы</label>
+  <select id="tallColor">
+    <option value="#78805b">Оливковый</option>
+    <option value="#f4f1e8">Белый</option>
+    <option value="#d6c5a8">Бежевый</option>
+    <option value="#777873">Графитовый</option>
+    <option value="#b28b65">Дуб</option>
+    <option value="#202522">Чёрный</option>
+  </select>
+
+  <label for="counterColor">Столешница</label>
+  <select id="counterColor">
+    <option value="#d6d0c4">Светлый камень</option>
+    <option value="#383a37">Тёмный камень</option>
+    <option value="#b28b65">Натуральный дуб</option>
+    <option value="#f4f1e8">Белая</option>
+    <option value="#777873">Серая</option>
+  </select>
+
+  <div class="tone-presets">
+    <button type="button" data-preset="olive-white">Оливковый + белый</button>
+    <button type="button" data-preset="white-olive">Белый + оливковый</button>
+    <button type="button" data-preset="beige-wood">Бежевый + дуб</button>
+    <button type="button" data-preset="graphite">Графитовая</button>
+  </div>
+  <button type="button" id="applyKitchenColors">Применить цвета</button>
+  <p id="colorStatus" aria-live="polite"></p>
+</section>
+
+</body>
+</html>
