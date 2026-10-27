@@ -564,4 +564,137 @@ $('exportProject').addEventListener('click', () => {
 $('importProject').addEventListener('click', () => $('importFile').click());
 $('importFile').addEventListener('change', async e => {
   const file = e.target.files?.[0];
-  if (!file) r
+  
+  if (!file) return;
+
+  try {
+    const text = await file.text();
+    loadData(JSON.parse(text));
+  } catch (e) {
+    status('Не удалось импортировать проект. Проверьте файл.');
+  }
+
+  e.target.value = '';
+});
+
+function resize() {
+  const width = viewport.clientWidth;
+  const height = viewport.clientHeight;
+
+  if (!width || !height) return;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+}
+
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const dragPlane = new THREE.Plane(
+  new THREE.Vector3(0, 1, 0),
+  0
+);
+
+let dragOffset = new THREE.Vector3();
+
+renderer.domElement.addEventListener('pointerdown', event => {
+  if (!moveMode || !selected) return;
+
+  dragging = true;
+  moved = false;
+  orbit.enabled = false;
+
+  dragPlane.constant = selected.position.y;
+
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(pointer, camera);
+
+  const point = new THREE.Vector3();
+  if (raycaster.ray.intersectPlane(dragPlane, point)) {
+    dragOffset.set(
+      selected.position.x - point.x,
+      0,
+      selected.position.z - point.z
+    );
+  }
+
+  lastPointer = { x: event.clientX, y: event.clientY };
+  renderer.domElement.setPointerCapture(event.pointerId);
+});
+
+renderer.domElement.addEventListener('pointermove', event => {
+  if (!dragging || !selected) return;
+
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(pointer, camera);
+
+  const point = new THREE.Vector3();
+  if (!raycaster.ray.intersectPlane(dragPlane, point)) return;
+
+  moved = true;
+
+  const dim = selected.userData.dim;
+  selected.position.x = THREE.MathUtils.clamp(
+    point.x + dragOffset.x,
+    -room.width / 2 + dim.w / 2,
+    room.width / 2 - dim.w / 2
+  );
+  selected.position.z = THREE.MathUtils.clamp(
+    point.z + dragOffset.z,
+    -room.length / 2 + dim.d / 2,
+    room.length / 2 - dim.d / 2
+  );
+});
+
+function stopDragging() {
+  if (!dragging) return;
+
+  dragging = false;
+  orbit.enabled = true;
+
+  if (selected?.userData.saved) {
+    selected.userData.saved.x = selected.position.x;
+    selected.userData.saved.z = selected.position.z;
+  }
+}
+
+renderer.domElement.addEventListener('pointerup', stopDragging);
+renderer.domElement.addEventListener('pointercancel', stopDragging);
+
+renderer.domElement.addEventListener('click', event => {
+  if (moveMode || moved) return;
+
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(pointer, camera);
+
+  const hits = raycaster.intersectObjects(unitGroup.children, true);
+  const hit = hits.find(item => item.object.userData.unitId !== undefined);
+
+  if (hit) {
+    const id = hit.object.userData.unitId;
+    selectUnit(units.find(unit => unit.userData.unitId === id) || null);
+  }
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  orbit.update();
+  renderer.render(scene, camera);
+}
+
+drawRoom();
+resize();
+updateEstimate();
+animate();
+
+window.addEventListener('resize', resize);
+
