@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171916">
+  <meta name="description" content="Кухни на заказ, индивидуальный дизайн и предварительный расчёт стоимости.">
+  <title>FORMA — кухни на заказ</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{--bg:#f5f4ef;--ink:#20231f;--muted:#73766e;--green:#68745e;--line:#ddded6;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.header{height:76px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10}
+.logo{font:800 26px Manrope,sans-serif;letter-spacing:-1.5px}.logo span{color:var(--green)}
+.header nav{display:flex;gap:30px;font-size:13px;color:#5e615a}
+.header-cta{font-size:12px;border:1px solid #c9cbc2;padding:12px 17px;border-radius:3px}
+.hero{padding:64px 6% 72px;display:grid;grid-template-columns:.9fr 1.1fr;gap:6%;align-items:center;min-height:590px}
+.eyebrow{font-size:10px;letter-spacing:2px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:10px}
+.eyebrow span{height:6px;width:6px;background:var(--green);border-radius:50%}
+h1,h2,h3,p{margin-top:0}
+h1,h2{font-family:Manrope,sans-serif;letter-spacing:-2px}
+h1{font-size:clamp(42px,5.3vw,76px);line-height:1.08;margin:26px 0}
+h1 em{font-style:normal;color:var(--green)}
+.hero-content>p,.section-heading>p{font-size:14px;line-height:1.9;color:var(--muted);max-width:420px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.button{display:inline-flex;align-items:center;justify-content:center;border:1px solid transparent;border-radius:3px;padding:14px 18px;font-size:12px;font-weight:600;transition:.2s}
+.button.primary{background:var(--green);color:white}.button.primary:hover{background:#4e5a46}
+.button.secondary{background:transparent;border-color:#d0d2c9;color:var(--ink)}.button.secondary:hover{background:#e9e9e1}
+.full{width:100%;margin-top:10px}
+.hero-stats{display:flex;gap:35px;margin-top:55px;padding-top:22px;border-top:1px solid var(--line)}
+.hero-stats div{display:flex;flex-direction:column;gap:6px}.hero-stats strong{font:700 20px Manrope}.hero-stats span{font-size:10px;color:var(--muted)}
+.hero-image{height:450px;position:relative;overflow:hidden;background:#ddd}
+.hero-image img,.catalog-card img{width:100%;height:100%;object-fit:cover;display:block}
+.image-label{position:absolute;bottom:18px;left:18px;background:#f5f4efed;padding:15px 20px;display:flex;flex-direction:column;gap:5px}
+.image-label span,.card-info span{font-size:9px;letter-spacing:1.4px;color:var(--green)}
+.image-label strong{font:600 17px Manrope}
+.section,.designer-section{padding:80px 6%}
+.section{background:#eeeee8}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:32px}
+h2{font-size:clamp(30px,4vw,47px);line-height:1.15;margin:15px 0 0}
+.section-heading>p{max-width:360px;margin-bottom:3px}
+.catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.catalog-card{min-width:0}
+.catalog-card>img{height:270px;background:#ddd}
+.card-info{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.card-info h3{font:600 18px Manrope;margin:8px 0 0}
+.card-info>a{width:34px;height:34px;border:1px solid var(--line);display:grid;place-items:center;border-radius:50%}
+.note{font-size:10px;line-height:1.6;color:#85877f;margin:12px 0 0}
+.designer-section{background:var(--bg)}
+.designer{display:grid;grid-template-columns:290px minmax(0,1fr);gap:22px;align-items:start}
+.controls{background:#fff;border:1px solid var(--line);padding:22px}
+.control-title{display:flex;gap:10px;align-items:center;margin-bottom:17px}
+.control-title>span{font-size:10px;color:var(--green);font-weight:700}
+.control-title h3{font:700 14px Manrope;margin:0}
+.control-title.spaced{margin-top:27px}
+.controls label,.contact-section form label{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#64675f;margin:12px 0}
+input,textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:3px;background:#fbfbf8;color:var(--ink);outline:none}
+input:focus,textarea:focus{border-color:var(--green)}
+.controls input{padding:10px}
+.small{font-size:11px;line-height:1.7;color:var(--muted)}
+.module-buttons{display:grid;gap:8px}
+.module-button{display:flex;justify-content:space-between;align-items:center;text-align:left;background:#f7f7f3;border:1px solid var(--line);padding:12px 10px;font-size:11px}
+.module-button span{color:var(--muted);font-size:10px}
+.swatches{display:flex;gap:10px}
+.swatch{height:30px;width:30px;border-radius:50%;border:2px solid #fff;outline:1px solid transparent}
+.swatch.active{outline-color:var(--green)}
+.selection-info{font-size:11px;color:var(--muted);line-height:1.7}
+.selected-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.selected-actions .button{padding:11px 6px;font-size:10px}
+.status{font-size:10px;color:var(--muted);line-height:1.6;margin:12px 0 0}
+.viewport-wrap{min-width:0;background:white;border:1px solid var(--line)}
+.viewport-top,.viewport-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;font-size:9px;letter-spacing:.6px;color:var(--muted)}
+.viewport-top i{display:inline-block;width:6px;height:6px;background:#6e9b67;border-radius:50%;margin-right:7px}
+#viewport{height:460px;position:relative;background:#e8e9e3;overflow:hidden;touch-action:pan-y}
+#viewport canvas{display:block;width:100%;height:100%;touch-action:pan-y}
+.viewport-bottom{border-top:1px solid var(--line)}
+.viewport-bottom button{border:0;background:transparent;font-size:10px;color:var(--green)}
+.estimate{border-top:1px solid var(--line);padding:20px;display:flex;justify-content:space-between;gap:15px;align-items:center}
+.estimate>div:first-child{display:flex;flex-direction:column;gap:6px}
+.estimate>div:first-child>span{font-size:9px;letter-spacing:1px;color:var(--muted)}
+.estimate strong{font:700 27px Manrope}
+.estimate small{font-size:9px;color:var(--muted);max-width:260px}
+.estimate-details{display:flex;flex-direction:column;gap:10px;font-size:10px;color:var(--muted)}
+.estimate-details b{color:var(--ink)}
+.contact-section{background:#e9eae2;padding:75px 10%;display:grid;grid-template-columns:1fr .8fr;gap:9%;align-items:start}
+.contact-section h2{margin-bottom:15px}
+.contact-section>div>p{font-size:13px;line-height:1.8;color:var(--muted);max-width:380px;margin-top:20px}
+.contact-section form{background:#fff;padding:25px}
+.contact-section form label{font-size:11px}
+.contact-section textarea{resize:vertical}
+footer{padding:24px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px}
+footer>span{font-size:10px;color:var(--muted)}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:35px;padding-top:45px}.hero-image{height:360px}.designer{grid-template-columns:1fr}.controls{order:2}.viewport-wrap{order:1}.section-heading{align-items:start;flex-direction:column}.section-heading>p{max-width:500px}.catalog-card>img{height:220px}.contact-section{padding:55px 6%;gap:25px}}
+@media(max-width:560px){.header{height:65px;padding:0 5%}.header nav{display:none}.logo{font-size:23px}.header-cta{font-size:10px;padding:10px}.hero{padding:40px 5% 50px;min-height:auto}h1{font-size:47px}.hero-image{height:280px}.hero-stats{gap:22px;margin-top:35px}.section,.designer-section{padding:55px 5%}.catalog-grid{grid-template-columns:1fr;gap:20px}.catalog-card>img{height:250px}#viewport{height:340px}.viewport-top,.viewport-bottom{font-size:8px;padding:11px}.estimate{padding:15px;align-items:flex-start;flex-direction:column}.estimate-details{flex-direction:row;flex-wrap:wrap}.contact-section{grid-template-columns:1fr;padding:50px 5%}.contact-section form{padding:18px}footer{flex-wrap:wrap;padding:20px 5%}footer>span{font-size:9px}}
+
+.two-tone-panel {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid #d8d8ce;
+  border-radius: 16px;
+  background: #f8f8f3;
+  color: #282b25;
+}
+.two-tone-panel h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+.two-tone-panel p {
+  color: #666b60;
+  font-size: .92rem;
+}
+.two-tone-panel label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+.two-tone-panel select,
+.two-tone-panel button {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #c9cbbf;
+  border-radius: 9px;
+  background: white;
+  color: #252820;
+  font: inherit;
+}
+.two-tone-panel button {
+  cursor: pointer;
+}
+.two-tone-panel button:hover {
+  border-color: #78805b;
+}
+.two-tone-panel #applyKitchenColors {
+  margin-top: 14px;
+  background: #78805b;
+  border-color: #78805b;
+  color: white;
+  font-weight: 700;
+}
+.tone-presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.tone-presets button {
+  margin: 0;
+  font-size: .85rem;
+}
+@media (max-width: 480px) {
+  .two-tone-panel { padding: 13px; }
+  .tone-presets { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#home">FORMA<span>.</span></a>
+    <nav>
+      <a href="#catalog">Коллекции</a>
+      <a href="#designer">3D-конструктор</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="header-cta" href="#designer">Создать кухню ↗</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="eyebrow"><span></span> КУХНИ ПО ИНДИВИДУАЛЬНОМУ ПРОЕКТУ</div>
+        <h1>Пространство,<br>созданное <em>для вас.</em></h1>
+        <p>Продумываем каждую деталь. Подбираем материалы, конфигурацию и цвета под ваш интерьер.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#designer">Спроектировать кухню ↗</a>
+          <a class="button secondary" href="#catalog">Смотреть коллекции</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>01</strong><span>Ваши размеры</span></div>
+          <div><strong>02</strong><span>Ваш стиль</span></div>
+          <div><strong>03</strong><span>Ваш проект</span></div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85" alt="Современный интерьер дома">
+        <div class="image-label"><span>DESIGN COLLECTION</span><strong>Тишина в деталях</strong></div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="section-heading">
+        <div><div class="eyebrow">НАШ ПОДХОД</div><h2>Найдите свой стиль.</h2></div>
+        <p>Выберите направление, которое вам близко. Все решения можно адаптировать под ваши размеры.</p>
+      </div>
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80" alt="Минималистичный интерьер">
+          <div class="card-info"><div><span>01 / MINIMAL</span><h3>Чистые линии</h3></div><a href="#designer" aria-label="Выбрать минималистичный стиль">↗</a></div>
+        </article>
+        <article class="catalog-card">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80" alt="Тёплый современный интерьер">
+          <div class="card-info"><div><span>02 / NATURAL</span><h3>Тёплое дерево</h3></div><a href="#designer" aria-label="Выбрать стиль с деревом">↗</a></div>
+        </article>
+        <article class="catalog-card">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80" alt="Современный дизайнерский интерьер">
+          <div class="card-info"><div><span>03 / MODERN</span><h3>Современная классика</h3></div><a href="#designer" aria-label="Выбрать современный стиль">↗</a></div>
+        </article>
+      </div>
+      <p class="note">Изображения — примеры интерьеров. Итоговый проект и материалы согласовываются отдельно.</p>
+    </section>
+
+    <section class="designer-section" id="designer">
+      <div class="section-heading">
+        <div><div class="eyebrow">ВАША ИДЕЯ — В 3D</div><h2>Создайте своё пространство.</h2></div>
+        <p>Задайте размеры комнаты, добавьте кухонные модули и подберите цвет фасадов.</p>
+      </div>
+
+      <div class="designer">
+        <aside class="controls">
+          <div class="control-title"><span>01</span><h3>Параметры комнаты</h3></div>
+          <label>Ширина комнаты, м <input id="roomWidth" type="number" min="2" max="10" step="0.1" value="4"></label>
+          <label>Длина комнаты, м <input id="roomLength" type="number" min="2" max="10" step="0.1" value="4"></label>
+          <label>Высота, м <input id="roomHeight" type="number" min="2" max="4" step="0.1" value="2.7"></label>
+          <button class="button primary full" id="updateRoom">Обновить комнату</button>
+
+          <div class="control-title spaced"><span>02</span><h3>Кухонные модули</h3></div>
+          <p class="small">Добавляйте шкафы вдоль стены. Модули можно выбрать и перемещать мышью в 3D.</p>
+          <div class="module-buttons">
+            <button class="module-button" data-module="base">＋ Нижний шкаф <span>60 см</span></button>
+            <button class="module-button" data-module="drawer">＋ Ящики <span>60 см</span></button>
+            <button class="module-button" data-module="tall">＋ Высокий шкаф <span>60 см</span></button>
+            <button class="module-button" data-module="wall">＋ Навесной шкаф <span>60 см</span></button>
+          <button class="module-button" data-module="fridge">＋ Холодильник <span>отдельный</span></button>
+          <button class="module-button" data-module="sink">＋ Мойка <span>отдельная</span></button>
+          <button class="module-button" data-module="faucet">＋ Кран <span>отдельный</span></button>
+          <button class="module-button" data-module="stove">＋ Варочная панель <span>отдельная</span></button>
+          <button class="module-button" data-module="oven">＋ Духовка <span>отдельная</span></button>
+          <button class="module-button" data-module="window">＋ Окно <span>на стене</span></button>
+          <button class="module-button" data-module="door">＋ Дверь <span>на стене</span></button>
+          <button class="module-button" data-module="table">＋ Обеденный стол <span>отдельный</span></button>
+          <button class="module-button" data-module="chair">＋ Стул <span>отдельный</span></button>
+          </div>
+
+          <div class="control-title spaced"><span>03</span><h3>Цвет фасадов</h3></div>
+          <div class="swatches">
+            <button class="swatch active" data-color="#d8d0c1" style="background:#d8d0c1" aria-label="Песочный"></button>
+            <button class="swatch" data-color="#777e70" style="background:#777e70" aria-label="Оливковый"></button>
+            <button class="swatch" data-color="#343936" style="background:#343936" aria-label="Графитовый"></button>
+            <button class="swatch" data-color="#a47755" style="background:#a47755" aria-label="Дуб"></button>
+            <button class="swatch" data-color="#f1eee7" style="background:#f1eee7" aria-label="Светлый"></button>
+          </div>
+
+          <div class="control-title spaced"><span>04</span><h3>Выбранный модуль</h3></div>
+          <div id="selectionInfo" class="selection-info">Выберите модуль в 3D, чтобы изменить его.</div>
+<div id="objectControls" style="display:none;margin:12px 0;padding:12px;border:1px solid #777;border-radius:12px;background:#202020;color:white">
+      <div id="objectControlsTitle" style="font-weight:600;margin-bottom:10px">Выберите предмет</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button id="moveSelected" type="button">↔ Переместить</button>
+        <button id="rotateSelected" type="button">⟳ Повернуть</button>
+        <button id="deleteSelected" type="button">✕ Удалить</button>
+      </div>
+    </div>
+          <div class="selected-actions">
+            <button class="button secondary" id="rotateModule">Повернуть ↻</button>
+            <button class="button secondary" id="deleteModule">Удалить</button>
+          </div>
+          <div class="selected-actions">
+            <button class="button secondary" id="saveProject">Сохранить проект</button>
+            <button class="button secondary" id="loadProject">Загрузить</button>
+          </div>
+          <button class="button secondary full" id="exportProject">Экспортировать JSON ↓</button>
+          <button class="button secondary full" id="screenshot">Скачать снимок 3D</button>
+          <input type="file" id="importFile" accept=".json,application/json" hidden>
+          <button class="button secondary full" id="importProject">Импортировать JSON ↑</button>
+          <p id="status" class="status" role="status">Проект готов к редактированию.</p>
+        </aside>
+
+        <div class="viewport-wrap">
+          <div class="viewport-top"><span><i></i> 3D-ПРОСМОТР</span><span>Прокрутка — масштаб · Перетаскивание — обзор</span></div>
+          <div id="viewport" aria-label="Интерактивная 3D-модель кухни"></div>
+          <div class="viewport-bottom"><span>ПРЕДВАРИТЕЛЬНАЯ ВИЗУАЛИЗАЦИЯ</span><button id="resetCamera">Сбросить вид ↗</button></div>
+          <div class="estimate">
+            <div><span>ПРЕДВАРИТЕЛЬНАЯ ОЦЕНКА</span><strong id="totalPrice">0 MDL</strong><small>Ориентировочно, не является коммерческим предложением</small></div>
+            <div class="estimate-details"><span>Модули: <b id="moduleCount">0</b></span><span>Погонная длина: <b id="runLength">0 м</b></span></div>
+          </div>
+          <p class="note">Стоимость рассчитывается по демонстрационным ставкам и не учитывает все материалы, технику, доставку и монтаж.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contacts">
+      <div><div class="eyebrow">СЛЕДУЮЩИЙ ШАГ</div><h2>Обсудим вашу кухню?</h2><p>Оставьте контактные данные — после подключения формы можно будет отправлять реальные заявки.</p></div>
+      <form id="contactForm">
+        <label>Ваше имя<input name="name" required placeholder="Как к вам обращаться?"></label>
+        <label>Телефон или мессенджер<input name="contact" required placeholder="+373 ..."></label>
+        <label>Комментарий<textarea name="message" rows="3" placeholder="Размеры, пожелания, стиль..."></textarea></label>
+        <button class="button primary full" type="submit">Подготовить заявку ↗</button>
+        <p id="formStatus" class="status" role="status">Форма пока демонстрационная: данные никуда не отправляются.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer><a class="logo" href="#home">FORMA<span>.</span></a><span>Индивидуальные кухни · Moldova</span><span>© <span id="year"></span> FORMA</span></footer>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/controls/OrbitControls.js';
+
+const $ = id => document.getElementById(id);
+const viewport = $('viewport');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#e8e9e3');
+
+const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+camera.position.set(6, 5.2, 7);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+viewport.appendChild(renderer.domElement);
+
+const orbit = new OrbitControls(camera, renderer.domElement);
+orbit.enableDamping = true;
+orbit.target.set(0, 1, 0);
+orbit.maxPolarAngle = Math.PI * 0.49;
+orbit.minDistance = 3;
+orbit.maxDistance = 18;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x898b7e, 2));
+const sun = new THREE.DirectionalLight(0xffffff, 2.2);
+sun.position.set(4, 8, 5);
+sun.castShadow = true;
+scene.add(sun);
+
+const floorMat = new THREE.MeshStandardMaterial({ color: '#d9d9d0', roughness: 0.9 });
+const wallMat = new THREE.MeshStandardMaterial({ color: '#f7f5ee', roughness: 0.95, side: THREE.DoubleSide });
+const cabinetMat = new THREE.MeshStandardMaterial({ color: '#d8d0c1', roughness: 0.65 });
+const topMat = new THREE.MeshStandardMaterial({ color: '#8b897f', roughness: 0.45 });
+const detailMat = new THREE.MeshStandardMaterial({ color: '#77776d', metalness: 0.55, roughness: 0.35 });
+
+let room = { width: 4, length: 4, height: 2.7 };
+let units = [];
+let selected = null;
+let nextId = 1;
+let facadeColor = '#d8d0c1';
+let dragging = false;
+let moved = false;
+let lastPointer = null;
+let pointerDown = null;
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), floorMat);
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -0.015;
+floor.receiveShadow = true;
+scene.add(floor);
+
+const roomGroup = new THREE.Group();
+scene.add(roomGroup);
+const unitGroup = new THREE.Group();
+scene.add(unitGroup);
+
+function clearGroup(group) {
+  while (group.children.length) {
+    const child = group.children[0];
+    group.remove(child);
+    child.traverse?.(obj => {
+      if (obj.geometry) obj.geometry.dispose();
+    });
+  }
+}
+
+function addBox(parent, size, position, material, name = '') {
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(...size), material);
+  mesh.position.set(...position);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.userData.part = name;
+  parent.add(mesh);
+  return mesh;
+}
+
+function drawRoom() {
+  clearGroup(roomGroup);
+  const { width: w, length: l, height: h } = room;
+  addBox(roomGroup, [w, 0.08, l], [0, 0, 0], floorMat, 'floor');
+
+  // Back wall and two side walls
+  addBox(roomGroup, [w, h, 0.08], [0, h / 2, -l / 2], wallMat, 'wall');
+  addBox(roomGroup, [0.08, h, l], [-w / 2, h / 2, 0], wallMat, 'wall');
+  addBox(roomGroup, [0.08, h, l], [w / 2, h / 2, 0], wallMat, 'wall');
+
+  // Subtle floor grid
+  const grid = new THREE.GridHelper(Math.max(w, l), Math.round(Math.max(w, l) * 2), 0xb7b8ad, 0xd0d1c8);
+  grid.position.y = 0.045;
+  roomGroup.add(grid);
+
+  orbit.target.set(0, h * 0.38, 0);
+  orbit.update();
+}
+
+
+function dimensions(type) {
+  const defs = {
+    base:   { w:.6, h:.86, d:.58, price:2900, name:'Нижний шкаф' },
+    drawer: { w:.6, h:.86, d:.58, price:3600, name:'Шкаф с ящиками' },
+    tall:   { w:.6, h:Math.min(2.2, room.height-.2), d:.58, price:4200, name:'Высокий шкаф' },
+    wall:   { w:.6, h:.72, d:.35, price:2400, name:'Навесной шкаф' },
+    fridge: { w:.72, h:1.85, d:.7, price:9500, name:'Холодильник' },
+    sink:   { w:.6, h:.86, d:.58, price:1800, name:'Мойка' },
+    faucet: { w:.16, h:.35, d:.16, price:650, name:'Кран' },
+    stove:  { w:.6, h:.08, d:.52, price:2200, name:'Варочная панель' },
+    oven:   { w:.6, h:.6, d:.55, price:3200, name:'Духовка' },
+    window: { w:1.2, h:1.0, d:.09, price:0, name:'Окно' },
+    door:   { w:.9, h:2.05, d:.1, price:0, name:'Дверь' },
+    table:  { w:1.2, h:.76, d:.75, price:2500, name:'Обеденный стол' },
+    chair:  { w:.42, h:.9, d:.42, price:700, name:'Стул' }
+  };
+  return defs[type] || defs.base;
+}
+
+
+
+function buildUnit(data) {
+  const dim = dimensions(data.type);
+  const group = new THREE.Group();
+  group.userData.unitId = data.id;
+  group.userData.type = data.type;
+
+  const facade = new THREE.MeshStandardMaterial({
+    color: data.color || facadeColor,
+    roughness: .58
+  });
+  const dark = new THREE.MeshStandardMaterial({ color:'#454943', roughness:.45 });
+  const metal = new THREE.MeshStandardMaterial({ color:'#aeb1aa', metalness:.7, roughness:.25 });
+  const glass = new THREE.MeshStandardMaterial({
+    color:'#a9d5e7', metalness:.15, roughness:.18,
+    transparent:true, opacity:.72
+  });
+  const wood = new THREE.MeshStandardMaterial({ color:'#b29a7b', roughness:.7 });
+  const black = new THREE.MeshStandardMaterial({ color:'#222522', roughness:.3 });
+
+  const box = (size, pos, mat, part='') =>
+    addBox(group, size, pos, mat, part);
+
+  const cyl = (radius, height, pos, mat, sides=20) => {
+    const mesh = new THREE.Mesh(
+      new THREE.CylinderGeometry(radius, radius, height, sides), mat
+    );
+    mesh.position.set(...pos);
+    mesh.castShadow = true;
+    mesh.userData.part = '';
+    mesh.userData.unitId = data.id;
+    group.add(mesh);
+    return mesh;
+  };
+
+  const t = data.type;
+  const isWall = t === 'wall';
+  let defaultY = dim.h/2 + .05;
+
+  if (t === 'window') defaultY = Math.min(room.height*.62, room.height-.65);
+  if (t === 'door') defaultY = dim.h/2 + .05;
+  if (t === 'faucet') defaultY = .98;
+  if (t === 'stove') defaultY = .95;
+  if (t === 'oven') defaultY = .52;
+  if (t === 'wall') defaultY = Math.min(room.height-dim.h/2-.2, 1.85);
+  if (t === 'chair') defaultY = .45;
+
+  if (['base','drawer','tall','wall'].includes(t)) {
+    const bodyH = dim.h - .035;
+    box([dim.w-.035, bodyH, dim.d-.025], [0,0,0], wood, 'body');
+    box([dim.w-.07, dim.h-.08, .035], [0,0,dim.d/2+.02], facade, 'facade');
+
+    if (t === 'drawer') {
+      for (let i=0; i<3; i++) {
+        const yy = -dim.h/2 + dim.h*(i+.5)/3;
+        box([dim.w*.52,.025,.025], [0,yy,dim.d/2+.045], metal);
+      }
+    } else {
+      box([.16,.025,.025], [0,0,dim.d/2+.045], metal);
+    }
+    if (!isWall) {
+      box([dim.w+.025,.045,dim.d+.035], [0,dim.h/2+.025,0], topMat, 'countertop');
+      box([dim.w-.07,.04,dim.d-.07], [0,-dim.h/2+.025,0], wood);
+    }
+  }
+
+  if (t === 'fridge') {
+    box([dim.w,dim.h,dim.d], [0,0,0], facade, 'facade');
+    box([dim.w-.035,dim.h*.57,.025], [0,dim.h*.21,dim.d/2+.014], metal);
+    box([dim.w-.035,.018,.025], [0,-dim.h*.08,dim.d/2+.016], dark);
+    box([.025,dim.h*.35,.035], [dim.w*.32,dim.h*.23,dim.d/2+.025], metal);
+    box([.025,dim.h*.28,.035], [dim.w*.32,-dim.h*.28,dim.d/2+.025], metal);
+  }
+
+  if (t === 'sink') {
+    box([dim.w, .07, dim.d], [0,0,0], topMat);
+    box([dim.w*.66,.035,dim.d*.56], [0,.045,0], dark);
+    box([dim.w*.58,.025,dim.d*.48], [0,.065,0], metal);
+    box([.035,.02,.035], [0,.085,0], dark);
+  }
+
+  if (t === 'faucet') {
+    cyl(.035,.22,[0,-.08,0],metal);
+    cyl(.025,.18,[0,.035,-.025],metal);
+    cyl(.022,.15,[0,.105,.045],metal);
+    cyl(.018,.07,[0,.17,.075],metal);
+  }
+
+  if (t === 'stove') {
+    box([dim.w,.065,dim.d],[0,0,0],black,'facade');
+    for (const x of [-.17,.17]) {
+      for (const z of [-.13,.13]) {
+        cyl(.085,.018,[x,.042,z],metal);
+        cyl(.057,.02,[x,.054,z],black);
+      }
+    }
+  }
+
+  if (t === 'oven') {
+    box([dim.w,dim.h,dim.d],[0,0,0],facade,'facade');
+    box([dim.w*.76,dim.h*.53,.025],[0,-.04,dim.d/2+.018],black);
+    box([dim.w*.65,.025,.025],[0,dim.h*.34,dim.d/2+.04],metal);
+    for (let i=0;i<3;i++) cyl(.025,.025,[-.16+i*.16,dim.h*.39,dim.d/2+.04],metal);
+  }
+
+  if (t === 'window') {
+    box([dim.w,dim.h,.06],[0,0,0],wood);
+    box([dim.w-.12,dim.h-.12,.025],[0,0,.04],glass,'facade');
+    box([.035,dim.h-.08,.025],[0,0,.06],wood);
+    box([dim.w-.08,.035,.025],[0,0,.06],wood);
+    box([.025,dim.h-.08,.025],[0,0,.075],metal);
+  }
+
+  if (t === 'door') {
+    box([dim.w,dim.h,.07],[0,0,0],wood,'facade');
+    box([dim.w*.65,dim.h*.65,.018],[0,.05,.045],facade);
+    cyl(.025,.025,[dim.w*.32,-.05,.07],metal);
+  }
+
+  if (t === 'table') {
+    box([dim.w,.07,dim.d],[0,dim.h/2,0],wood,'facade');
+    for (const x of [-dim.w*.42,dim.w*.42]) {
+      for (const z of [-dim.d*.36,dim.d*.36]) {
+        box([.055,dim.h-.06,.055],[x,-.025,z],dark);
+      }
+    }
+  }
+
+  if (t === 'chair') {
+    box([dim.w,.06,dim.d*.9],[0,0,0],wood,'facade');
+    for (const x of [-dim.w*.38,dim.w*.38]) {
+      for (const z of [-dim.d*.38,dim.d*.38]) {
+        box([.035,.43,.035],[x,-.22,z],wood);
+      }
+    }
+    box([dim.w,.43,.045],[0,.24,-dim.d*.4],wood);
+    box([dim.w,.06,dim.d*.88],[0,.47,-dim.d*.4],facade);
+  }
+
+  let x = Number.isFinite(data.x) ? data.x : 0;
+  let z = Number.isFinite(data.z) ? data.z : 0;
+
+  group.position.set(x, defaultY, z);
+  group.rotation.y = data.rotation || 0;
+  group.userData.price = dim.price;
+  group.userData.name = dim.name;
+  group.userData.dim = dim;
+  group.userData.saved = { ...data };
+  group.traverse(obj => {
+    if (obj.isMesh) obj.userData.unitId = data.id;
+  });
+  unitGroup.add(group);
+  return group;
+}
+
+
+
+function addUnit(type) {
+  const dim = dimensions(type);
+  const id = nextId++;
+  let x = 0;
+  let z = 0;
+
+  const wallTypes = ['base','drawer','wall','sink','stove','oven','fridge'];
+  const wallItems = units.filter(u => wallTypes.includes(u.userData.type));
+
+  if (wallTypes.includes(type)) {
+    // Ставим кухонные модули последовательно вдоль задней стены.
+    const usedWidth = wallItems.reduce(
+      (sum, u) => sum + u.userData.dim.w + 0.04, 0
+    );
+    x = -room.width / 2 + 0.08 + usedWidth + dim.w / 2;
+    z = -room.length / 2 + dim.d / 2 + 0.08;
+
+    // Если не помещается, начинаем следующий ряд.
+    if (x + dim.w / 2 > room.width / 2 - 0.05) {
+      const row = Math.floor(wallItems.length / 3) + 1;
+      x = -room.width / 2 + dim.w / 2 + 0.08;
+      z = -room.length / 2 + dim.d / 2 + 0.08 + row * (dim.d + 0.12);
+    }
+  } else if (type === 'window' || type === 'door') {
+    x = type === 'window' ? 0 : room.width / 2 - dim.w / 2 - 0.05;
+    z = -room.length / 2 + dim.d / 2 + 0.05;
+  } else {
+    // Стол, стулья, кран и другие отдельные предметы — разные позиции.
+    const index = units.length;
+    const cols = 3;
+    const spacingX = Math.max(dim.w + 0.25, 0.8);
+    const spacingZ = Math.max(dim.d + 0.25, 0.8);
+    x = -room.width / 2 + 0.6 + (index % cols) * spacingX;
+    z = -room.length / 2 + 1.0 + Math.floor(index / cols) * spacingZ;
+  }
+
+  x = THREE.MathUtils.clamp(
+    x, -room.width / 2 + dim.w / 2, room.width / 2 - dim.w / 2
+  );
+  z = THREE.MathUtils.clamp(
+    z, -room.length / 2 + dim.d / 2, room.length / 2 - dim.d / 2
+  );
+
+  const data = { id, type, x, z, rotation: 0, color: facadeColor };
+  const unit = buildUnit(data);
+  units.push(unit);
+  selectUnit(unit);
+  updateEstimate();
+  status('Добавлен предмет: ' + unit.userData.name + '.');
+}
+function selectUnit(unit) {
+  if (selected) selected.traverse(o => {
+    if (o.isMesh && o.material?.emissive) o.material.emissive.set('#000000');
+  });
+  selected = unit;
+  if (selected) {
+    selected.traverse(o => {
+      if (o.isMesh && o.material?.emissive) o.material.emissive.set('#222218');
+    });
+    $('selectionInfo').textContent = selected.userData.name + ' · ширина 60 см';
+  } else {
+    $('selectionInfo').textContent = 'Выберите модуль в 3D, чтобы изменить его.';
+  }
+  if (typeof refreshObjectControls === 'function') refreshObjectControls();
+}
+
+
+let moveMode = false;
+
+function refreshObjectControls() {
+  const panel = document.getElementById('objectControls');
+  if (!panel) return;
+  panel.style.display = selected ? 'block' : 'none';
+  const title = document.getElementById('objectControlsTitle');
+  if (title) title.textContent = selected
+    ? 'Выбран предмет: ' + (selected.userData.name || 'Модуль')
+    : 'Сначала выберите предмет';
+  const move = document.getElementById('moveSelected');
+  if (move) {
+    move.textContent = moveMode ? 'Готово: перемещение' : '↔ Переместить';
+    move.style.background = moveMode ? '#3b7555' : '#333';
+  }
+}
+
+(function createObjectControls() {
+  let panel = document.getElementById('objectControls');
+  const info = document.getElementById('selectionInfo');
+
+  if (!panel) {
+    if (!info) {
+      console.error('Не найден selectionInfo');
+      return;
+    }
+    panel = document.createElement('div');
+    panel.id = 'objectControls';
+    panel.style.cssText =
+      'display:none;margin:12px 0;padding:12px;border:1px solid #777;border-radius:12px;background:#202020;color:white;';
+    panel.innerHTML = `
+      <div id="objectControlsTitle" style="font-weight:600;margin-bottom:10px">Выберите предмет</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button id="moveSelected" type="button">↔ Переместить</button>
+        <button id="rotateSelected" type="button">⟳ Повернуть</button>
+        <button id="deleteSelected" type="button">✕ Удалить</button>
+      </div>
+      <div style="font-size:12px;margin-top:8px;color:#ccc">
+        Включите перемещение, затем перетащите предмет пальцем.
+      </div>`;
+    info.insertAdjacentElement('afterend', panel);
+  }
+
+  // Если обработчики уже подключены, не подключаем их повторно.
+  if (panel.dataset.controlsBound === 'yes') return;
+  panel.dataset.controlsBound = 'yes';
+
+  const moveButton = document.getElementById('moveSelected');
+  const rotateButton = document.getElementById('rotateSelected');
+  const deleteButton = document.getElementById('deleteSelected');
+
+  if (moveButton) moveButton.addEventListener('click', () => {
+    if (!selected) {
+      status('Сначала нажмите на предмет в 3D.');
+      return;
+    }
+    moveMode = !moveMode;
+    refreshObjectControls();
+    status(moveMode
+      ? 'Перемещение включено: перетащите выбранный предмет.'
+      : 'Перемещение выключено.');
+  });
+
+  if (rotateButton) rotateButton.addEventListener('click', () => {
+    if (!selected) {
+      status('Сначала выберите предмет.');
+      return;
+    }
+    selected.rotation.y += Math.PI / 2;
+    if (selected.userData.saved) {
+      selected.userData.saved.rotation = selected.rotation.y;
+    }
+    status('Предмет повёрнут на 90°.');
+  });
+
+  if (deleteButton) deleteButton.addEventListener('click', () => {
+    if (!selected) {
+      status('Сначала выберите предмет.');
+      return;
+    }
+    unitGroup.remove(selected);
+    units = units.filter(u => u !== selected);
+    selected = null;
+    moveMode = false;
+    selectUnit(null);
+    updateEstimate();
+    status('Предмет удалён.');
+  });
+})();
+
+function updateEstimate() {
+  const price = units.reduce((sum, u) => sum + u.userData.price, 0);
+  const length = units.filter(u => ['base','drawer','sink','stove','oven'].includes(u.userData.type)).reduce((sum, u) => sum + u.userData.dim.w, 0);
+  $('totalPrice').textContent = price.toLocaleString('ru-RU') + ' MDL';
+  $('moduleCount').textContent = units.length;
+  $('runLength').textContent = length.toFixed(1) + ' м';
+}
+
+function status(message) {
+  $('status').textContent = message;
+}
+
+function applyRoom() {
+  const w = Number($('roomWidth').value);
+  const l = Number($('roomLength').value);
+  const h = Number($('roomHeight').value);
+  if (![w, l, h].every(Number.isFinite) || w < 2 || w > 10 || l < 2 || l > 10 || h < 2 || h > 4) {
+    status('Введите ширину и длину от 2 до 10 м, высоту от 2 до 4 м.');
+    return;
+  }
+  room = { width: w, length: l, height: h };
+  drawRoom();
+  status('Размеры комнаты обновлены. Проверьте расположение модулей.');
+}
+
+function projectData() {
+  return {
+    version: 1,
+    room,
+    facadeColor,
+    units: units.map(u => ({
+      id: u.userData.unitId,
+      type: u.userData.type,
+      x: u.position.x,
+      z: u.position.z,
+      rotation: u.rotation.y,
+      color: u.userData.saved.color || facadeColor
+    }))
+  };
+}
+
+function loadData(data) {
+  if (!data || !data.room || !Array.isArray(data.units)) throw new Error('Неверный формат проекта');
+  const r = data.room;
+  if (![r.width, r.length, r.height].every(Number.isFinite) ||
+      r.width < 2 || r.width > 10 || r.length < 2 || r.length > 10 || r.height < 2 || r.height > 4 ||
+      data.units.length > 100) throw new Error('Некорректные параметры проекта');
+  room = { width: r.width, length: r.length, height: r.height };
+  $('roomWidth').value = room.width;
+  $('roomLength').value = room.length;
+  $('roomHeight').value = room.height;
+  facadeColor = data.facadeColor || '#d8d0c1';
+  document.querySelectorAll('.swatch').forEach(b => b.classList.toggle('active', b.dataset.color === facadeColor));
+  clearGroup(unitGroup);
+  units = [];
+  selected = null;
+  nextId = 1;
+  drawRoom();
+  for (const item of data.units) {
+    if (!['base','drawer','tall','wall','fridge','sink','faucet','stove','oven','window','door','table','chair'].includes(item.type)) continue;
+    const safe = {
+      id: Number.isFinite(item.id) ? item.id : nextId,
+      type: item.type,
+      x: THREE.MathUtils.clamp(Number(item.x) || 0, -room.width / 2 + 0.35, room.width / 2 - 0.35),
+      z: THREE.MathUtils.clamp(Number(item.z) || 0, -room.length / 2 + 0.3, room.length / 2 - 0.3),
+      rotation: Number(item.rotation) || 0,
+      color: /^#[0-9a-f]{6}$/i.test(item.color || '') ? item.color : facadeColor
+    };
+    nextId = Math.max(nextId, safe.id + 1);
+    units.push(buildUnit(safe));
+  }
+  updateEstimate();
+  status('Проект загружен.');
+}
+
+$('updateRoom').addEventListener('click', applyRoom);
+document.querySelectorAll('[data-module]').forEach(b => b.addEventListener('click', () => addUnit(b.dataset.module)));
+
+document.querySelectorAll('.swatch').forEach(b => b.addEventListener('click', () => {
+  facadeColor = b.dataset.color;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s === b));
+  for (const unit of units) {
+    unit.traverse(o => {
+      if (o.isMesh && o.userData.part === 'facade') {
+        o.material.color.set(facadeColor);
+      }
+    });
+    unit.userData.saved.color = facadeColor;
+  }
+  status('Цвет фасадов изменён.');
+}));
+
+$('rotateModule').addEventListener('click', () => {
+  if (!selected) return status('Сначала выберите модуль.');
+  selected.rotation.y += Math.PI / 2;
+  selected.userData.saved.rotation = selected.rotation.y;
+});
+$('deleteModule').addEventListener('click', () => {
+  if (!selected) return status('Сначала выберите модуль.');
+  unitGroup.remove(selected);
+  units = units.filter(u => u !== selected);
+  selected = null;
+  selectUnit(null);
+  updateEstimate();
+  status('Модуль удалён.');
+});
+
+$('saveProject').addEventListener('click', () => {
+  try {
+    localStorage.setItem('forma-kitchen-project', JSON.stringify(projectData()));
+    status('Проект сохранён в памяти этого браузера.');
+  } catch (e) { status('Не удалось сохранить проект в браузере.'); }
+});
+$('loadProject').addEventListener('click', () => {
+  try {
+    const saved = localStorage.getItem('forma-kitchen-project');
+    if (!saved) return status('Сохранённых проектов пока нет.');
+    loadData(JSON.parse(saved));
+  } catch (e) { status('Не удалось загрузить проект.'); }
+});
+
+$('exportProject').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(projectData(), null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'forma-kitchen-project.json'; a.click();
+  URL.revokeObjectURL(url);
+  status('Файл проекта подготовлен.');
+});
+$('importProject').addEventListener('click', () => $('importFile').click());
+$('importFile').addEventListener('change', async e => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  try { loadData(JSON.parse(await file.text())); }
+  catch (err) { status('Не удалось импортировать файл: проверьте JSON.'); }
+  e.target.value = '';
+});
+$('screenshot').addEventListener('click', () => {
+  renderer.render(scene, camera);
+  const a = document.createElement('a');
+  a.download = 'forma-kitchen-3d.png';
+  a.href = renderer.domElement.toDataURL('image/png');
+  a.click();
+});
+$('resetCamera').addEventListener('click', () => {
+  camera.position.set(6, 5.2, 7);
+  orbit.target.set(0, room.height * 0.38, 0);
+  orbit.update();
+});
+
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+const hitPoint = new THREE.Vector3();
+
+function setPointer(event) {
+  const rect = renderer.domElement.getBoundingClientRect();
+  pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+  pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+}
+
+renderer.domElement.addEventListener('pointerdown', e => {
+  pointerDown = { x: e.clientX, y: e.clientY };
+  moved = false;
+  setPointer(e);
+  raycaster.setFromCamera(pointer, camera);
+  const hits = raycaster.intersectObjects(unitGroup.children, true);
+  const hit = hits.find(h => h.object.userData.unitId !== undefined);
+  if (hit) {
+    const id = hit.object.userData.unitId;
+    const unit = units.find(u => u.userData.unitId === id);
+    selectUnit(unit || null);
+    if (moveMode && selected) {
+      dragging = true;
+      orbit.enabled = false;
+      raycaster.ray.intersectPlane(groundPlane, hitPoint);
+      lastPointer = hitPoint.clone();
+    }
+  } else {
+    selectUnit(null);
+  }
+});
+renderer.domElement.addEventListener('pointermove', e => {
+  if (!dragging || !selected) return;
+  if (pointerDown && Math.hypot(e.clientX - pointerDown.x, e.clientY - pointerDown.y) > 4) moved = true;
+  setPointer(e);
+  raycaster.setFromCamera(pointer, camera);
+  if (!raycaster.ray.intersectPlane(groundPlane, hitPoint)) return;
+  const dx = hitPoint.x - lastPointer.x;
+  const dz = hitPoint.z - lastPointer.z;
+  selected.position.x = THREE.MathUtils.clamp(selected.position.x + dx, -room.width / 2 + 0.35, room.width / 2 - 0.35);
+  selected.position.z = THREE.MathUtils.clamp(selected.position.z + dz, -room.length / 2 + 0.3, room.length / 2 - 0.3);
+  lastPointer.copy(hitPoint);
+  selected.userData.saved.x = selected.position.x;
+  selected.userData.saved.z = selected.position.z;
+});
+function endDrag() {
+  if (dragging) {
+    dragging = false;
+    orbit.enabled = true;
+    updateEstimate();
+  }
+}
+renderer.domElement.addEventListener('pointerup', endDrag);
+renderer.domElement.addEventListener('pointercancel', endDrag);
+window.addEventListener('pointerup', endDrag);
+
+function resize() {
+  const w = Math.max(1, viewport.clientWidth);
+  const h = Math.max(1, viewport.clientHeight);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h, false);
+}
+new ResizeObserver(resize).observe(viewport);
+resize();
+drawRoom();
+addUnit('base');
+addUnit('drawer');
+addUnit('wall');
+selectUnit(null);
+updateEstimate();
+$('year').textContent = new Date().getFullYear();
+
+$('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  $('formStatus').textContent = 'Это демонстрация: заявка не отправлена. Для реального приёма подключим сервис отправки формы.';
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  orbit.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+// Независимые цвета фасадов и столешницы
+(() => {
+  const lower = document.getElementById('lowerColor');
+  const upper = document.getElementById('upperColor');
+  const tall = document.getElementById('tallColor');
+  const counter = document.getElementById('counterColor');
+  const apply = document.getElementById('applyKitchenColors');
+  const statusEl = document.getElementById('colorStatus');
+
+  if (!lower || !upper || !tall || !counter || !apply) return;
+
+  const presets = {
+    'olive-white': ['#78805b', '#f4f1e8', '#78805b', '#d6d0c4'],
+    'white-olive': ['#f4f1e8', '#78805b', '#f4f1e8', '#383a37'],
+    'beige-wood': ['#d6c5a8', '#f4f1e8', '#b28b65', '#b28b65'],
+    'graphite': ['#777873', '#777873', '#383a37', '#383a37']
+  };
+
+  document.querySelectorAll('[data-preset]').forEach(button => {
+    button.addEventListener('click', () => {
+      const values = presets[button.dataset.preset];
+      if (!values) return;
+      [lower, upper, tall, counter].forEach((el, i) => el.value = values[i]);
+      apply.click();
+    });
+  });
+
+  apply.addEventListener('click', () => {
+    if (typeof units === 'undefined') {
+      statusEl.textContent = '3D-модели ещё не готовы.';
+      return;
+    }
+
+    for (const unit of units) {
+      const type = unit.userData.type;
+      const isUpper = type === 'wall';
+      const isTall = type === 'tall';
+      const isCounter = ['base', 'drawer', 'sink'].includes(type);
+
+      const chosenColor = isUpper ? upper.value
+        : isTall ? tall.value
+        : lower.value;
+
+      unit.traverse(obj => {
+        if (!obj.isMesh || !obj.material) return;
+
+        if (obj.userData.part === 'facade') {
+          obj.material.color.set(chosenColor);
+        }
+
+        if (obj.userData.part === 'countertop' && isCounter) {
+          obj.material.color.set(counter.value);
+        }
+      });
+
+      unit.userData.saved = unit.userData.saved || {};
+      unit.userData.saved.lowerColor = lower.value;
+      unit.userData.saved.upperColor = upper.value;
+      unit.userData.saved.tallColor = tall.value;
+      unit.userData.saved.counterColor = counter.value;
+    }
+
+    statusEl.textContent = 'Цвета применены к существующим шкафам. Новые шкафы пока используют основной цвет фасада.';
+    if (typeof status === 'function') {
+      status('Цвета фасадов и столешницы обновлены.');
+    }
+  });
+})();
+
+</script>
+
+<section id="twoTonePanel" class="two-tone-panel">
+  <h2>Цветовая комбинация кухни</h2>
+  <p>Выбери оттенки фасадов и столешницы</p>
+
+  <label for="lowerColor">Нижние шкафы</label>
+  <select id="lowerColor">
+    <option value="#78805b">Оливковый</option>
+    <option value="#f4f1e8">Белый</option>
+    <option value="#d6c5a8">Бежевый</option>
+    <option value="#777873">Графитовый</option>
+    <option value="#b28b65">Дуб</option>
+    <option value="#202522">Чёрный</option>
+    <option value="#a7b7b0">Серо-зелёный</option>
+    <option value="#c6a6a0">Пудровый</option>
+  </select>
+
+  <label for="upperColor">Верхние шкафы</label>
+  <select id="upperColor">
+    <option value="#f4f1e8">Белый</option>
+    <option value="#78805b">Оливковый</option>
+    <option value="#d6c5a8">Бежевый</option>
+    <option value="#777873">Графитовый</option>
+    <option value="#b28b65">Дуб</option>
+    <option value="#202522">Чёрный</option>
+    <option value="#a7b7b0">Серо-зелёный</option>
+    <option value="#c6a6a0">Пудровый</option>
+  </select>
+
+  <label for="tallColor">Высокие шкафы</label>
+  <select id="tallColor">
+    <option value="#78805b">Оливковый</option>
+    <option value="#f4f1e8">Белый</option>
+    <option value="#d6c5a8">Бежевый</option>
+    <option value="#777873">Графитовый</option>
+    <option value="#b28b65">Дуб</option>
+    <option value="#202522">Чёрный</option>
+  </select>
+
+  <label for="counterColor">Столешница</label>
+  <select id="counterColor">
+    <option value="#d6d0c4">Светлый камень</option>
+    <option value="#383a37">Тёмный камень</option>
+    <option value="#b28b65">Натуральный дуб</option>
+    <option value="#f4f1e8">Белая</option>
+    <option value="#777873">Серая</option>
+  </select>
+
+  <div class="tone-presets">
+    <button type="button" data-preset="olive-white">Оливковый + белый</button>
+    <button type="button" data-preset="white-olive">Белый + оливковый</button>
+    <button type="button" data-preset="beige-wood">Бежевый + дуб</button>
+    <button type="button" data-preset="graphite">Графитовая</button>
+  </div>
+  <button type="button" id="applyKitchenColors">Применить цвета</button>
+  <p id="colorStatus" aria-live="polite"></p>
+</section>
+
+</body>
+</html>
