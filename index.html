@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kitchen Studio 3D</title>
+<style>
+body{margin:0;font-family:Arial;background:#151b25;color:white}
+header{padding:15px;background:#222c3b}
+main{display:grid;grid-template-columns:250px 1fr;min-height:85vh}
+aside{padding:15px;background:#222c3b}
+button,select{display:block;width:100%;padding:12px;margin:10px 0;border:0;border-radius:7px}
+button{background:#557cf0;color:white}
+#view{min-height:70vh}
+@media(max-width:650px){main{grid-template-columns:1fr}#view{min-height:50vh}}
+</style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<header><h2>Kitchen Studio 3D</h2>Конструктор кухни</header>
+<main>
+<aside>
+<h3>Настройки</h3>
+<select id="color">
+<option value="#eee1cd">Бежевый</option>
+<option value="#ffffff">Белый</option>
+<option value="#61745e">Зелёный</option>
+<option value="#343945">Графит</option>
+<option value="#976a49">Дуб</option>
+</select>
+<button id="add">Добавить шкаф</button>
+<button id="remove">Удалить выбранный шкаф</button>
+<button id="reset">Сбросить проект</button>
+<p id="status">Загрузка 3D...</p>
+<p>Вращай сцену пальцем. Приближай двумя пальцами. Нажимай на шкаф, чтобы выбрать его.</p>
+</aside>
+<div id="view"></div>
+</main>
+<script type="module">
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const view=document.querySelector('#view');
+const status=document.querySelector('#status');
+const scene=new THREE.Scene();
+scene.background=new THREE.Color('#dce4eb');
+const camera=new THREE.PerspectiveCamera(45,1,.1,100);
+camera.position.set(5,4,7);
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+view.appendChild(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);
+controls.target.set(0,1,0);controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight(0xffffff,0x777777,2));
+const light=new THREE.DirectionalLight(0xffffff,3);
+light.position.set(4,8,5);scene.add(light);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(20,20),new THREE.MeshStandardMaterial({color:'#b7bdc3'}));
+floor.rotation.x=-Math.PI/2;floor.position.y=-.03;scene.add(floor);
+const grid=new THREE.GridHelper(12,24);grid.position.y=-.01;scene.add(grid);
+const room=new THREE.Group();scene.add(room);
+const units=[];let selected=null;
+function makeRoom(){
+room.clear();
+const mat=new THREE.MeshStandardMaterial({color:'#f6f3ed',side:THREE.DoubleSide});
+const back=new THREE.Mesh(new THREE.PlaneGeometry(4,2.8),mat);
+back.position.set(0,1.4,-1.8);room.add(back);
+const side=new THREE.Mesh(new THREE.PlaneGeometry(3.6,2.8),mat);
+side.rotation.y=Math.PI/2;side.position.set(-2,1.4,0);room.add(side);
+}
+function addCabinet(x,z){
+const g=new THREE.Group();g.position.set(x,.45,z);
+const body=new THREE.Mesh(new THREE.BoxGeometry(.58,.9,.55),new THREE.MeshStandardMaterial({color:'#bdb8ae'}));
+g.add(body);
+const door=new THREE.Mesh(new THREE.BoxGeometry(.53,.82,.04),new THREE.MeshStandardMaterial({color:document.querySelector('#color').value}));
+door.position.z=.3;door.userData.door=true;g.add(door);
+const handle=new THREE.Mesh(new THREE.BoxGeometry(.035,.18,.035),new THREE.MeshStandardMaterial({color:'#b99a66',metalness:.5}));
+handle.position.set(.18,0,.34);g.add(handle);
+g.traverse(o=>{if(o.isMesh)o.userData.owner=g});
+scene.add(g);units.push(g);select(g);
+}
+function select(g){
+selected=g;
+units.forEach(u=>u.children.forEach(o=>{if(o.userData.door)o.material.emissive.set(u===g?'#233c62':'#000000')}));
+}
+function reset(){
+units.forEach(u=>scene.remove(u));units.length=0;selected=null;
+makeRoom();for(let i=0;i<4;i++)addCabinet(-1.5+i*.62,-1.42);
+status.textContent='3D-сцена готова';
+}
+document.querySelector('#add').onclick=()=>addCabinet((Math.random()-.5)*2.5,-1.4);
+document.querySelector('#remove').onclick=()=>{
+if(!selected)return;
+scene.remove(selected);units.splice(units.indexOf(selected),1);selected=null;
+};
+document.querySelector('#reset').onclick=reset;
+document.querySelector('#color').onchange=e=>{
+units.forEach(u=>u.children.forEach(o=>{if(o.userData.door)o.material.color.set(e.target.value)}));
+};
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+renderer.domElement.addEventListener('click',e=>{
+const r=renderer.domElement.getBoundingClientRect();
+pointer.x=(e.clientX-r.left)/r.width*2-1;
+pointer.y=-(e.clientY-r.top)/r.height*2+1;
+raycaster.setFromCamera(pointer,camera);
+const hits=raycaster.intersectObjects(units,true);
+if(hits.length){let o=hits[0].object;while(o&&!units.includes(o))o=o.parent;if(o)select(o);}
+});
+function resize(){
+const w=view.clientWidth,h=view.clientHeight;if(!w||!h)return;
+camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);
+}
+function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);}
+reset();resize();window.addEventListener('resize',resize);animate();
+</script>
+</body>
+</html>
